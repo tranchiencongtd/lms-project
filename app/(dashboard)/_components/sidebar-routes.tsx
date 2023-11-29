@@ -7,29 +7,29 @@ import { SidebarItem } from "./sidebar-item";
 
 const guestRoutes = [
   {
-    icon: Layout,
-    label: "Dashboard",
-    href: "/",
+    icon: Compass,
+    label: "Khám phá",
+    href: "/search",
   },
   {
-    icon: Compass,
-    label: "Browse",
-    href: "/search",
+    icon: Layout,
+    label: "Cá nhân",
+    href: "/",
   },
 ];
 
 const teacherRoutes = [
   {
     icon: List,
-    label: "Courses",
+    label: "Khoá học",
     href: "/teacher/courses",
   },
   {
     icon: BarChart,
-    label: "Analytics",
+    label: "Thống kê",
     href: "/teacher/analytics",
   },
-]
+];
 
 export const SidebarRoutes = () => {
   const pathname = usePathname();
@@ -45,11 +45,7 @@ export const SidebarRoutes = () => {
       label={route.label}
       href={route.href}
     />
-  ))
+  ));
 
-  return (
-    <div className="flex flex-col w-full">
-      {sidebarItems}
-    </div>
-  )
-}
+  return <div className="flex flex-col w-full">{sidebarItems}</div>;
+};

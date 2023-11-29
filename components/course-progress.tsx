@@ -24,7 +24,7 @@ export const CourseProgress = ({
 }: CourseProgressProps) => {
   return (
     <div>
-      <Progress className="h-2" value={value} />
+      <Progress className="h-2" value={value}/>
       <p
         className={cn(
           "font-medium mt-2 text-sky-700",
@@ -32,7 +32,7 @@ export const CourseProgress = ({
           sizeByVariant[size || "default"]
         )}
       >
-        {Math.round(value)}% Complete
+        {Math.round(value)}% Hoàn thành
       </p>
     </div>
   );
