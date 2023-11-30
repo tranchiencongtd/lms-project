@@ -66,11 +66,11 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   ];
 
   const totalFields = requiredFields.length;
-  const completedFields = requiredFields.filter(Boolean).length;
+  const completedFields = requiredFields.filter(value => value !== null).length;
 
   const completionText = `(${completedFields}/${totalFields})`;
 
-  const isComplete = requiredFields.every(Boolean);
+  const isComplete = requiredFields.every(value => value !== null);
 
   return (
     <>

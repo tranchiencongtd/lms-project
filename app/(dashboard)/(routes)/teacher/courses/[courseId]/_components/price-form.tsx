@@ -80,7 +80,7 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
             !initialData.price && "text-slate-500 italic"
           )}
         >
-          {initialData.price ? formatPrice(initialData.price) : "Không có giá"}
+          {initialData.price != null ? formatPrice(initialData.price) : "Chưa có giá"}
         </p>
       )}
       {isEditing && (

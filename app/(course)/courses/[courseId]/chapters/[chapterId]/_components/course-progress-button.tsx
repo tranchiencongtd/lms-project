@@ -61,7 +61,7 @@ export const CourseProgressButton = ({
       variant={isCompleted ? "outline" : "success"}
       className="w-full md:w-auto"
     >
-      {isCompleted ? "Chưa hoàn thành" : "Hoàn thành"}
+      {isCompleted ? "Đánh dấu chưa hoàn thành" : "Đánh dấu đã hoàn thành"}
       <Icon className="h-4 w-4 ml-2" />
     </Button>
   )
