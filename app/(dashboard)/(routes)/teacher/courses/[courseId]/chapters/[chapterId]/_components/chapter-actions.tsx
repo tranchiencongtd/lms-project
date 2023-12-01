@@ -33,12 +33,12 @@ export const ChapterActions = ({
         await axios.patch(
           `/api/courses/${courseId}/chapters/${chapterId}/unpublish`
         );
-        toast.success("Chương chưa được xuất bản");
+        toast.success("Bài học chưa được xuất bản");
       } else {
         await axios.patch(
           `/api/courses/${courseId}/chapters/${chapterId}/publish`
         );
-        toast.success("Chương đã được xuất bản");
+        toast.success("Bài học đã được xuất bản");
       }
 
       router.refresh();
@@ -55,7 +55,7 @@ export const ChapterActions = ({
 
       await axios.delete(`/api/courses/${courseId}/chapters/${chapterId}`);
 
-      toast.success("Đã xoá chương");
+      toast.success("Đã xoá bài");
       router.refresh();
       router.push(`/teacher/courses/${courseId}`);
     } catch {

@@ -71,7 +71,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
       await axios.put(`/api/courses/${courseId}/chapters/reorder`, {
         list: updateData,
       });
-      toast.success("Chương học đã được sắp xếp");
+      toast.success("Bài học đã được sắp xếp");
       router.refresh();
     } catch {
       toast.error("Đã xảy ra lỗi!");
@@ -92,14 +92,14 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
         </div>
       )}
       <div className="font-medium flex items-center justify-between">
-        Các chương của khoá học
+        Các bài của khoá học
         <Button onClick={toggleCreating} variant="ghost">
           {isCreating ? (
             <>Huỷ</>
           ) : (
             <>
               <PlusCircle className="h-4 w-4 mr-2" />
-              Thêm 1 chương học
+              Thêm 1 bài học
             </>
           )}
         </Button>
@@ -139,7 +139,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
             !initialData.chapters.length && "text-slate-500 italic"
           )}
         >
-          {!initialData.chapters.length && "Không có chương học nào"}
+          {!initialData.chapters.length && "Không có bìa học nào"}
           <ChaptersList
             onEdit={onEdit}
             onReorder={onReorder}
@@ -149,7 +149,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
       )}
       {!isCreating && (
         <p className="text-xs text-muted-foreground mt-4">
-          Kéo thả các chương học
+          Kéo thả các bài học
         </p>
       )}
     </div>

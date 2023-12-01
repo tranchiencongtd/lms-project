@@ -71,7 +71,7 @@ export const ChapterAccessForm = ({
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Quyền xem chương này
+        Quyền xem bài này
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Huỷ</>
@@ -93,7 +93,7 @@ export const ChapterAccessForm = ({
           {initialData.isFree ? (
             <>Miễn phí.</>
           ) : (
-            <>Chương này có phí.</>
+            <>Bài học này mất phí.</>
           )}
         </p>
       )}
@@ -116,7 +116,7 @@ export const ChapterAccessForm = ({
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormDescription>
-                      Chọn hộp này nếu bạn muốn chương này được miễn phí
+                      Chọn hộp này nếu bạn muốn bài học này được miễn phí
                     </FormDescription>
                   </div>
                 </FormItem>

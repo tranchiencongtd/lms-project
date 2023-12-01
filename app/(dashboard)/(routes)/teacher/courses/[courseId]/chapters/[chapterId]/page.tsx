@@ -38,21 +38,22 @@ const ChapterIdPage = async ({
     return redirect("/");
   }
 
-  const requiredFields = [chapter.title, chapter.description, chapter.videoUrl];
+  const requiredFields = [chapter.title, chapter.description, chapter.videoUrl, chapter.youtubeUrl];
 
-  const totalFields = requiredFields.length;
-  const completedFields = requiredFields.filter(Boolean).length;
+  const totalFields = requiredFields.length - 1;
+  const completedFields = requiredFields.filter(Boolean).length - 1;
 
   const completionText = `(${completedFields}/${totalFields})`;
 
-  const isComplete = requiredFields.every(Boolean);
+  //const isComplete = requiredFields.every(Boolean);
+  const isComplete = totalFields === completedFields;
 
   return (
     <>
       {!chapter.isPublished && (
         <Banner
           variant="warning"
-          label="Chương này chưa được xuất bản. Nó sẽ không được hiển thị trong khóa học"
+          label="Bài này chưa được xuất bản và sẽ không hiển thị trong khóa học"
         />
       )}
       <div className="p-6">
@@ -67,7 +68,7 @@ const ChapterIdPage = async ({
             </Link>
             <div className="flex items-center justify-between w-full">
               <div className="flex flex-col gap-y-2">
-                <h1 className="text-2xl font-medium">Tạo chương</h1>
+                <h1 className="text-2xl font-medium">Tạo mới bài</h1>
                 <span className="text-sm text-slate-700">
                   Hoàn thành {completionText}
                 </span>
@@ -86,7 +87,7 @@ const ChapterIdPage = async ({
             <div>
               <div className="flex items-center gap-x-2">
                 <IconBadge icon={LayoutDashboard} />
-                <h2 className="text-xl">Tùy chỉnh chương của bạn</h2>
+                <h2 className="text-xl">Tùy chỉnh bài học của bạn</h2>
               </div>
               <ChapterTitleForm
                 initialData={chapter}
