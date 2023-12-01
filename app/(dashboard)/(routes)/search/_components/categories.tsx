@@ -30,11 +30,11 @@ const iconMap: Record<Category["name"], IconType> = {
 
 export const Categories = ({ items }: CategoriesProps) => {
   return (
-    <div className="flex items-center gap-x-2 overflow-x-auto pb-2">
+    <div className="flex items-center gap-2 overflow-x-auto pb-2 flex-wrap">
       <CategoryItem
           key={"all"} 
           label={"Tất cả"}
-          value={""}
+          value={"all"}
         />
       {items.map((item) => (
         <CategoryItem

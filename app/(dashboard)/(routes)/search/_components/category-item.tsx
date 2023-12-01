@@ -25,7 +25,7 @@ export const CategoryItem = ({
   const currentCategoryId = searchParams.get("categoryId");
   const currentTitle = searchParams.get("title");
 
-  const isSelected = currentCategoryId === value;
+  const isSelected = currentCategoryId === value || ( currentCategoryId === null && value == "all" );
 
   const onClick = () => {
     const url = qs.stringifyUrl(
@@ -33,7 +33,7 @@ export const CategoryItem = ({
         url: pathname,
         query: {
           title: currentTitle,
-          categoryId: isSelected ? null : value,
+          categoryId: (isSelected || value == "all") ? null : value,
         },
       },
       { skipNull: true, skipEmptyString: true }
@@ -43,6 +43,6 @@ export const CategoryItem = ({
   };
 
   return (
-      <Badge onClick={onClick} variant={ isSelected ? "default" : "secondary"} className={cn("truncate cursor-pointer px-3 py-2 rounded-md hover:bg-slate-200", isSelected && "hove:bg-black")}>{label}</Badge>
+      <Badge onClick={onClick} variant={ isSelected ? "default" : "secondary"} className={cn("truncate cursor-pointer px-3 py-2 rounded-md", !isSelected && "hover:bg-slate-200", isSelected && "hover:bg-slate-900")}>{label}</Badge>
   );
 };
