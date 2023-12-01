@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import MuxPlayer from "@mux/mux-player-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Loader2, Lock } from "lucide-react";
@@ -10,6 +10,7 @@ import { Loader2, Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useConfettiStore } from "@/hooks/use-confetti-store";
 import { log } from "console";
+import ReactPlayer from "react-player";
 
 interface VideoPlayerProps {
   playbackId: string;
@@ -19,7 +20,8 @@ interface VideoPlayerProps {
   isLocked: boolean;
   completeOnEnd: boolean;
   title: string;
-};
+  urlYoutube: string;
+}
 
 export const VideoPlayer = ({
   playbackId,
@@ -29,55 +31,74 @@ export const VideoPlayer = ({
   isLocked,
   completeOnEnd,
   title,
+  urlYoutube,
 }: VideoPlayerProps) => {
   const [isReady, setIsReady] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const router = useRouter();
   const confetti = useConfettiStore();
+
+  // for error UI not map
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return <></>;
 
   const onEnd = async () => {
     try {
       if (completeOnEnd) {
-        await axios.put(`/api/courses/${courseId}/chapters/${chapterId}/progress`, {
-          isCompleted: true,
-        });
+        await axios.put(
+          `/api/courses/${courseId}/chapters/${chapterId}/progress`,
+          {
+            isCompleted: true,
+          }
+        );
 
         if (!nextChapterId) {
           confetti.onOpen();
         }
 
-        toast.success("Progress updated");
+        toast.success("Quá trình học đã được cập nhật updated");
         router.refresh();
 
         if (nextChapterId) {
-          router.push(`/courses/${courseId}/chapters/${nextChapterId}`)
+          router.push(`/courses/${courseId}/chapters/${nextChapterId}`);
         }
       }
     } catch {
-      toast.error("Something went wrong");
+      toast.error("Đã xảy ra lỗi");
     }
-  }
+  };
 
   return (
     <div className="relative aspect-video">
       {!isReady && !isLocked && (
         <div className="absolute inset-0 flex items-center justify-center bg-slate-800">
-          <Loader2 className="h-8 w-8 animate-spin text-secondary" />
+          {/* <Loader2 className="h-8 w-8 animate-spin text-secondary" /> */}
         </div>
       )}
       {isLocked && (
         <div className="absolute inset-0 flex items-center justify-center bg-slate-800 flex-col gap-y-2 text-secondary">
           <Lock className="h-8 w-8" />
-          <p className="text-sm">
-            Bài này chưa được mở    
-          </p>
+          <p className="text-sm">Bài này chưa được mở</p>
         </div>
       )}
-      {!isLocked && (
+      {!isLocked && urlYoutube ? (
+        <div className="relative aspect-video mt-2">
+          <ReactPlayer
+            height={"100%"}
+            width={"100%"}
+            controls
+            url={urlYoutube || ""}
+            onEnded={onEnd}
+            playing={true}
+          />
+        </div>
+      ) : (
         <MuxPlayer
           title={title}
-          className={cn(
-            !isReady && "hidden"
-          )}
+          className={cn(!isReady && "hidden")}
           onCanPlay={() => setIsReady(true)}
           onEnded={onEnd}
           autoPlay
@@ -85,5 +106,5 @@ export const VideoPlayer = ({
         />
       )}
     </div>
-  )
-}
+  );
+};

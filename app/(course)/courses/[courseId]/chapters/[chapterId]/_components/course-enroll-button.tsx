@@ -18,7 +18,6 @@ export const CourseEnrollButton = ({
   courseId,
 }: CourseEnrollButtonProps) => {
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
 
   const onClick = async () => {
     try {
@@ -26,8 +25,7 @@ export const CourseEnrollButton = ({
 
       const response = await axios.post(`/api/courses/${courseId}/checkout`);
 
-      router.push(response.data.url);
-     // window.location.assign(response.data.url);
+      window.location.assign(response.data.url);
     } catch {
       toast.error("Đã có lỗi xảy ra");
     } finally {

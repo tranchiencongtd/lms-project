@@ -2,7 +2,7 @@
 
 import { UserButton, useAuth } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
-import { LogOut } from "lucide-react";
+import { MoveLeft } from "lucide-react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -21,14 +21,17 @@ export const NavbarRoutes = () => {
   return (
     <>
       {isSearchPage && (
-        <div className="hidden md:block">{/* <SearchInput /> */}</div>
+        <div className="hidden md:block">
+          {" "}
+          <SearchInput />{" "}
+        </div>
       )}
-      <div className="flex gap-x-2 ml-auto">
+      <div className="flex gap-x-2 justify-between w-full">
         {isTeacherPage || isCoursePage ? (
           <Link href="/">
             <Button size="sm" variant="ghost">
-              <LogOut className="h-4 w-4 mr-2" />
-              Thoát
+              <MoveLeft className="h-4 w-4 mr-2" />
+              Quay lại
             </Button>
           </Link>
         ) : isTeacher(userId) ? (
@@ -38,6 +41,8 @@ export const NavbarRoutes = () => {
             </Button>
           </Link>
         ) : null}
+      </div>
+      <div>
         <UserButton afterSignOutUrl="/" />
       </div>
     </>

@@ -39,9 +39,9 @@ const ChapterIdPage = async ({
   }
 
   const requiredFields = [chapter.title, chapter.description, chapter.videoUrl, chapter.youtubeUrl];
-
   const totalFields = requiredFields.length - 1;
-  const completedFields = requiredFields.filter(Boolean).length - 1;
+  let completedFields = requiredFields.filter(Boolean).length - 1;
+  if(chapter.videoUrl || chapter.youtubeUrl) completedFields++;
 
   const completionText = `(${completedFields}/${totalFields})`;
 

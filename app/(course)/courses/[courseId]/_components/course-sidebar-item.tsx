@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle, Lock, PlayCircle } from "lucide-react";
+import { CheckCircle, Lock, PauseCircle, PlayCircle } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
 import { cn } from "@/lib/utils";
@@ -23,8 +23,8 @@ export const CourseSidebarItem = ({
   const pathname = usePathname();
   const router = useRouter();
 
-  const Icon = isLocked ? Lock : isCompleted ? CheckCircle : PlayCircle;
   const isActive = pathname?.includes(id);
+  const Icon = isActive ? PauseCircle : isLocked ? Lock : isCompleted ? CheckCircle : PlayCircle;
 
   const onClick = () => {
     router.push(`/courses/${courseId}/chapters/${id}`);
@@ -46,7 +46,7 @@ export const CourseSidebarItem = ({
         <Icon
           size={22}
           className={cn(
-            "text-slate-500",
+            "text-slate-500 ",
             isActive && "text-slate-700",
             isCompleted && "text-emerald-700"
           )}

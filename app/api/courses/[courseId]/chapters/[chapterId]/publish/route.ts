@@ -2,6 +2,7 @@ import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 import { db } from "@/lib/db";
+import { isTeacher } from "@/lib/teacher";
 
 export async function PATCH(
   req: Request,
@@ -10,7 +11,7 @@ export async function PATCH(
   try {
     const { userId } = auth();
 
-    if (!userId) {
+    if (!userId || !isTeacher(userId)) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
@@ -40,10 +41,9 @@ export async function PATCH(
 
     if (
       !chapter ||
-      !muxData ||
       !chapter.title ||
       !chapter.description ||
-      !chapter.videoUrl
+      ((!muxData && !chapter.videoUrl) && !chapter.youtubeUrl)
     ) {
       return new NextResponse("Missing required fields", { status: 400 });
     }
