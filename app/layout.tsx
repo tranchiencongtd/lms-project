@@ -1,21 +1,23 @@
-import './globals.css'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import { ClerkProvider } from '@clerk/nextjs'
-import { ToastProvider } from '@/components/providers/toaster-provider'
-import { ConfettiProvider } from '@/components/providers/confetti-provider'
+import "./globals.css";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
+import { ToastProvider } from "@/components/providers/toaster-provider";
+import { ConfettiProvider } from "@/components/providers/confetti-provider";
+import { Suspense } from "react";
+import Loading from "../components/loading";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'congtcdev',
-  description: 'congtcdev - Dạy lập trình',
-}
+  title: "congtcdev",
+  description: "congtcdev - Dạy lập trình",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <ClerkProvider>
@@ -23,9 +25,9 @@ export default function RootLayout({
         <body className={inter.className}>
           <ConfettiProvider />
           <ToastProvider />
-          {children}
+          <Suspense fallback={<Loading />}>{children}</Suspense>
         </body>
       </html>
     </ClerkProvider>
-  )
+  );
 }

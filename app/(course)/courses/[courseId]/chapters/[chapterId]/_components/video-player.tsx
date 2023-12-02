@@ -2,15 +2,15 @@
 
 import axios from "axios";
 import MuxPlayer from "@mux/mux-player-react";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Loader2, Lock } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { useConfettiStore } from "@/hooks/use-confetti-store";
-import { log } from "console";
 import ReactPlayer from "react-player";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface VideoPlayerProps {
   playbackId: string;
@@ -75,7 +75,7 @@ export const VideoPlayer = ({
     <div className="relative aspect-video">
       {!isReady && !isLocked && (
         <div className="absolute inset-0 flex items-center justify-center bg-slate-800">
-          {/* <Loader2 className="h-8 w-8 animate-spin text-secondary" /> */}
+        //   {/* <Loader2 className="h-8 w-8 animate-spin text-black" /> */}
         </div>
       )}
       {isLocked && (
@@ -93,6 +93,7 @@ export const VideoPlayer = ({
             url={urlYoutube || ""}
             onEnded={onEnd}
             playing={true}
+            onReady={() => setIsReady(true)}
           />
         </div>
       ) : (
