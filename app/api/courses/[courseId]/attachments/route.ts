@@ -6,7 +6,7 @@ import { isTeacher } from "@/lib/teacher";
 
 export async function POST(
   req: Request,
-  { params }: { params: { courseId: string } }
+  { params }: { params: { courseId: string, chapterId: string } }
 ) {
   try {
     const { userId } = auth();
@@ -32,6 +32,7 @@ export async function POST(
         url,
         name: url.split("/").pop(),
         courseId: params.courseId,
+        chapterId: params.chapterId
       }
     });
 
