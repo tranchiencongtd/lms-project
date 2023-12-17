@@ -1,7 +1,7 @@
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Eye, LayoutDashboard, Video } from "lucide-react";
+import { ArrowLeft, Eye, LayoutDashboard, Video, File } from "lucide-react";
 
 import { db } from "@/lib/db";
 import { IconBadge } from "@/components/icon-badge";
@@ -12,6 +12,7 @@ import { ChapterDescriptionForm } from "./_components/chapter-description-form";
 import { ChapterAccessForm } from "./_components/chapter-access-form";
 import { ChapterVideoForm } from "./_components/chapter-video-form";
 import { ChapterActions } from "./_components/chapter-actions";
+import { AttachmentForm } from "./_components/attachment-form";
 
 const ChapterIdPage = async ({
   params,
@@ -31,6 +32,7 @@ const ChapterIdPage = async ({
     },
     include: {
       muxData: true,
+      attachments: true
     },
   });
 
@@ -47,6 +49,7 @@ const ChapterIdPage = async ({
 
   //const isComplete = requiredFields.every(Boolean);
   const isComplete = totalFields === completedFields;
+
 
   return (
     <>
@@ -110,6 +113,19 @@ const ChapterIdPage = async ({
                 courseId={params.courseId}
                 chapterId={params.chapterId}
               />
+            </div>
+            <div>
+            <div>
+              <div className="flex items-center gap-x-2">
+                <IconBadge icon={File} />
+                <h2 className="text-xl">Tài liệu & File đính kèm</h2>
+              </div>
+              <AttachmentForm
+                initialData={chapter}
+                courseId={params.courseId}
+                chapterId={params.chapterId}
+              />
+            </div>
             </div>
           </div>
           <div>

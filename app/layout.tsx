@@ -6,6 +6,7 @@ import { ToastProvider } from "@/components/providers/toaster-provider";
 import { ConfettiProvider } from "@/components/providers/confetti-provider";
 import { Suspense } from "react";
 import Loading from "../components/loading";
+import NextTopLoader from 'nextjs-toploader';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,9 +24,10 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
+          <NextTopLoader showSpinner={false}/>
           <ConfettiProvider />
           <ToastProvider />
-          <Suspense fallback={<Loading />}>{children}</Suspense>
+          {children}
         </body>
       </html>
     </ClerkProvider>
