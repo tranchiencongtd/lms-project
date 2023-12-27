@@ -12,7 +12,7 @@ export const Logo = () => {
           fontFamily: "Roboto",
         }}
       >
-        congdev
+        congtcdev
       </a>
     </>
   );
