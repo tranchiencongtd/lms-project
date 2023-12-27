@@ -4,41 +4,39 @@ import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { isTeacher } from "@/lib/teacher";
 
-export async function POST(
+export async function DELETE(
   req: Request,
-  { params }: { params: { courseId: string, chapterId: string } }
+  { params }: { params: { courseId: string, attachmentId: string , chapterId: string} }
 ) {
   try {
     const { userId } = auth();
-    const { url } = await req.json();
 
     if (!userId || !isTeacher(userId)) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const courseOwner = await db.course.findUnique({
+    const chapterOwner = await db.chapter.findUnique({
       where: {
-        id: params.courseId,
-        userId: userId,
+        id: params.chapterId,
+        courseId: params.courseId
       }
     });
 
-    if (!courseOwner) {
+    if (!chapterOwner) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const attachment = await db.attachment.create({
-      data: {
-        url,
-        name: url.split("/").pop(),
+    const attachment = await db.attachment.delete({
+      where: {
         courseId: params.courseId,
-        chapterId: ""
+        id: params.attachmentId,
+        chapterId: params.chapterId
       }
     });
 
     return NextResponse.json(attachment);
   } catch (error) {
-    console.log("COURSE_ID_ATTACHMENTS", error);
+    console.log("ATTACHMENT_ID", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }

@@ -9,8 +9,7 @@ import { Loader2, Lock } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { useConfettiStore } from "@/hooks/use-confetti-store";
-import { log } from "console";
-import ReactPlayer from "react-player";
+import ReactPlayer from "react-player/youtube";
 
 interface VideoPlayerProps {
   playbackId: string;
@@ -43,7 +42,14 @@ export const VideoPlayer = ({
     setMounted(true);
   }, []);
 
-  if (!mounted) return <></>;
+  if (!mounted)
+    return (
+      <div className="relative aspect-video">
+        <div className="absolute inset-0 flex items-center justify-center bg-slate-800">
+          {/* <Loader2 className="h-8 w-8 animate-spin text-black" /> */}
+        </div>
+      </div>
+    );
 
   const onEnd = async () => {
     try {
@@ -75,7 +81,7 @@ export const VideoPlayer = ({
     <div className="relative aspect-video">
       {!isReady && !isLocked && (
         <div className="absolute inset-0 flex items-center justify-center bg-slate-800">
-          {/* <Loader2 className="h-8 w-8 animate-spin text-secondary" /> */}
+            {/* <Loader2 className="h-8 w-8 animate-spin text-black" /> */}
         </div>
       )}
       {isLocked && (
@@ -93,6 +99,7 @@ export const VideoPlayer = ({
             url={urlYoutube || ""}
             onEnded={onEnd}
             playing={true}
+            onReady={() => setIsReady(true)}
           />
         </div>
       ) : (

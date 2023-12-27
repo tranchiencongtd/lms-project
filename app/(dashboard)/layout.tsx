@@ -1,3 +1,4 @@
+import NextTopLoader from "nextjs-toploader";
 import { Navbar } from "./_components/navbar";
 import { Sidebar } from "./_components/sidebar";
 
@@ -15,6 +16,7 @@ const DashboardLayout = ({
         <Sidebar />
       </div>
       <main className="md:pl-56 pt-[80px] h-full">
+        <NextTopLoader showSpinner={false}/>
         {children}
       </main>
     </div>
