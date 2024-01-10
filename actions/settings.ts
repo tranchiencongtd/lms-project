@@ -37,7 +37,7 @@ export const settings = async (
     const existingUser = await getUserByEmail(values.email);
 
     if (existingUser && existingUser.id !== user.id) {
-      return { error: "Email already in use!" }
+      return { error: "Email đã tồn tại!" }
     }
 
     const verificationToken = await generateVerificationToken(
@@ -48,7 +48,7 @@ export const settings = async (
       verificationToken.token,
     );
 
-    return { success: "Verification email sent!" };
+    return { success: "Đã gửi email xác thực!" };
   }
 
   if (values.password && values.newPassword && dbUser.password) {
@@ -58,7 +58,7 @@ export const settings = async (
     );
 
     if (!passwordsMatch) {
-      return { error: "Incorrect password!" };
+      return { error: "Sai mật khẩu!" };
     }
 
     const hashedPassword = await bcrypt.hash(
@@ -85,5 +85,5 @@ export const settings = async (
     }
   });
 
-  return { success: "Settings Updated!" }
+  return { success: "Cài đặt đã được cập nhật!" }
 }

@@ -7,14 +7,14 @@ import { SidebarItem } from "./sidebar-item";
 
 const guestRoutes = [
   {
-    icon: Compass,
-    label: "Khám phá",
-    href: "/search",
-  },
-  {
     icon: Layout,
     label: "Cá nhân",
     href: "/",
+  },
+  {
+    icon: Compass,
+    label: "Khám phá",
+    href: "/search",
   },
 ];
 

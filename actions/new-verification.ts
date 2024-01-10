@@ -6,15 +6,14 @@ import { getVerificationTokenByToken } from "@/data/verificiation-token";
 
 export const newVerification = async (token: string) => {
   const existingToken = await getVerificationTokenByToken(token);
-  console.log(existingToken)
   if (!existingToken) {
-    return { error: "Token does not exist!" };
+    return { error: "Token không tồn tại!" };
   }
 
   const hasExpired = new Date(existingToken.expires) < new Date();
 
   if (hasExpired) {
-    return { error: "Token has expired!" };
+    return { error: "Token đã quá hạn!" };
   }
 
   const existingUser = await getUserByEmail(existingToken.email);
@@ -35,5 +34,5 @@ export const newVerification = async (token: string) => {
     where: { id: existingToken.id }
   });
 
-  return { success: "Email verified!" };
+  return { success: "Email đã được xác nhận!" };
 };

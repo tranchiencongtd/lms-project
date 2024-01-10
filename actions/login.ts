@@ -28,7 +28,7 @@ export const login = async (
   const validatedFields = LoginSchema.safeParse(values);
 
   if (!validatedFields.success) {
-    return { error: "Invalid fields!" };
+    return { error: "Các trường không hợp lệ!" };
   }
 
   const { email, password, code } = validatedFields.data;
@@ -59,17 +59,17 @@ export const login = async (
       );
 
       if (!twoFactorToken) {
-        return { error: "Invalid code!" };
+        return { error: "Mã code không hợp lệ!" };
       }
 
       if (twoFactorToken.token !== code) {
-        return { error: "Invalid code!" };
+        return { error: "Mã code không hợp lệ!" };
       }
 
       const hasExpired = new Date(twoFactorToken.expires) < new Date();
 
       if (hasExpired) {
-        return { error: "Code expired!" };
+        return { error: "Mã đã hết hạn!" };
       }
 
       await db.twoFactorToken.delete({
@@ -112,7 +112,7 @@ export const login = async (
     if (error instanceof AuthError) {
       switch (error.type) {
         case "CredentialsSignin":
-          return { error: "Invalid credentials!" }
+          return { error: "Tài khoản hoặc mật khẩu không chính xác" }
         default:
           return { error: "Đã có lỗi xảy ra!" }
       }

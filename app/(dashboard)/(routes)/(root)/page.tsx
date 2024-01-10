@@ -1,14 +1,15 @@
-import { auth } from "@clerk/nextjs";
+
 import { redirect } from "next/navigation";
 import { CheckCircle, Clock } from "lucide-react";
 
 import { getDashboardCourses } from "@/actions/get-dashboard-courses";
 import { CoursesList } from "@/components/courses-list";
-
+import { currentUser } from "@/lib/auth";
 import { InfoCard } from "./_components/info-card";
 
 export default async function Dashboard() {
-  const { userId } = auth();
+  const user = await currentUser();
+  let userId = user?.id;
 
   if (!userId) {
     return redirect("/");

@@ -1,10 +1,12 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
 import { ToastProvider } from "@/components/providers/toaster-provider";
 import { ConfettiProvider } from "@/components/providers/confetti-provider";
-import NextTopLoader from 'nextjs-toploader';
+import NextTopLoader from "nextjs-toploader";
+import { SessionProvider } from 'next-auth/react';
+import { auth } from '@/auth';
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,21 +15,23 @@ export const metadata: Metadata = {
   description: "congtcdev - Dạy lập trình",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await auth();
+
   return (
-    <ClerkProvider>
+    <SessionProvider session={session}>
       <html lang="en">
         <body className={inter.className}>
-          <NextTopLoader showSpinner={false}/>
+          <NextTopLoader showSpinner={false} />
           <ConfettiProvider />
           <ToastProvider />
           {children}
         </body>
       </html>
-    </ClerkProvider>
+    </SessionProvider>
   );
 }

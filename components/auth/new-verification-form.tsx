@@ -25,7 +25,7 @@ export const NewVerificationForm = () => {
     if (success || error) return;
 
     if (!token) {
-      setError("Missing token!");
+      setError("Token không tồn tại!");
       return;
     }
 

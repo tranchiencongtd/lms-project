@@ -11,7 +11,7 @@ export const reset = async (values: z.infer<typeof ResetSchema>) => {
   const validatedFields = ResetSchema.safeParse(values);
 
   if (!validatedFields.success) {
-    return { error: "Invalid emaiL!" };
+    return { error: "Email không hợp lệ!" };
   }
 
   const { email } = validatedFields.data;
@@ -19,7 +19,7 @@ export const reset = async (values: z.infer<typeof ResetSchema>) => {
   const existingUser = await getUserByEmail(email);
 
   if (!existingUser) {
-    return { error: "Email not found!" };
+    return { error: "Không tìm thấy địa chỉ email!" };
   }
 
   const passwordResetToken = await generatePasswordResetToken(email);

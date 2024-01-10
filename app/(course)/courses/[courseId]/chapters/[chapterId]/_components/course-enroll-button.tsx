@@ -3,7 +3,6 @@
 import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { formatPrice } from "@/lib/format";
@@ -18,7 +17,6 @@ export const CourseEnrollButton = ({
   courseId,
 }: CourseEnrollButtonProps) => {
   const [isLoading, setIsLoading] = useState(false);
-
   const onClick = async () => {
     try {
       setIsLoading(true);

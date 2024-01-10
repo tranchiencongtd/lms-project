@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs";
+
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Eye, LayoutDashboard, Video, File } from "lucide-react";
@@ -13,13 +13,14 @@ import { ChapterAccessForm } from "./_components/chapter-access-form";
 import { ChapterVideoForm } from "./_components/chapter-video-form";
 import { ChapterActions } from "./_components/chapter-actions";
 import { AttachmentForm } from "./_components/attachment-form";
-
+import { currentUser } from "@/lib/auth";
 const ChapterIdPage = async ({
   params,
 }: {
   params: { courseId: string; chapterId: string };
 }) => {
-  const { userId } = auth();
+  const user = await currentUser();
+  let userId = user?.id;
 
   if (!userId) {
     return redirect("/");

@@ -25,16 +25,16 @@ export const UserButton = () => {
       <DropdownMenuTrigger>
         <Avatar>
           <AvatarImage src={user?.image || ""} />
-          <AvatarFallback className="bg-sky-500">
+          {/* <AvatarFallback className="bg-slate-500">
             <FaUser className="text-white" />
-          </AvatarFallback>
+          </AvatarFallback> */}
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-40" align="end">
         <LogoutButton>
           <DropdownMenuItem>
             <ExitIcon className="h-4 w-4 mr-2" />
-            Logout
+            Đăng xuất
           </DropdownMenuItem>
         </LogoutButton>
       </DropdownMenuContent>

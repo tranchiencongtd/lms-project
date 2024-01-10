@@ -1,6 +1,6 @@
-import { currentUser } from "@clerk/nextjs";
-import { NextResponse } from "next/server";
 
+import { NextResponse } from "next/server";
+import { currentUser } from "@/lib/auth";
 import { db } from "@/lib/db";
 
 export async function POST(
@@ -10,7 +10,7 @@ export async function POST(
   try {
     const user = await currentUser();
 
-    if (!user || !user.id || !user.emailAddresses?.[0]?.emailAddress) {
+    if (!user || !user.id || !user.email) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
