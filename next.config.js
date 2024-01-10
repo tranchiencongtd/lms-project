@@ -4,6 +4,7 @@ const nextConfig = {
     domains: [
       "utfs.io"
     ]
-  }
+  },
+  reactStrictMode: false, 
 }
 module.exports = nextConfig
