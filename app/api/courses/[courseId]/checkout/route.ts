@@ -41,18 +41,16 @@ export async function POST(
     // TODO: Create method to payment online
     // HERE WE NOT PAYMENT
     let return_url = "";
-    try {
-      await db.purchase.create({
-        data: {
-          courseId: params.courseId,
-          userId: user.id,
-        },
-      });
+    
+    await db.purchase.create({
+      data: {
+        courseId: params.courseId,
+        userId: user.id,
+      },
+    });
 
-      return_url = `${process.env.NEXT_PUBLIC_APP_URL}/courses/${params.courseId}?success=1`;
-    } catch (error) {
-      return_url = `${process.env.NEXT_PUBLIC_APP_URL}/courses/${params.courseId}?canceled=1`;
-    }
+    return_url = `${process.env.NEXT_PUBLIC_APP_URL}/courses/${params.courseId}`;
+   
 
     return NextResponse.json({ url: return_url });
   } catch (error) {
