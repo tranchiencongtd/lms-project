@@ -26,8 +26,8 @@ export const sendPasswordResetEmail = async (
   await resend.emails.send({
     from: "onboarding@resend.dev",
     to: email,
-    subject: "Reset your password",
-    html: `<p>Click <a href="${resetLink}">here</a> to reset password.</p>`
+    subject: "Đặt lại mật khẩu của bạn",
+    html: `<p>Click <a href="${resetLink}">vào đây</a> để đặt lại mật khẩu của bạn.</p>`
   });
 };
 
@@ -39,7 +39,7 @@ export const sendVerificationEmail = async (
   await resend.emails.send({
     from: "onboarding@resend.dev",
     to: email,
-    subject: "Confirm your email",
-    html: `<div>Click <a href="${confirmLink}">here</a> to confirm email.</div>`
+    subject: "Xác nhận email của bạn",
+    html: `<div>Click <a href="${confirmLink}">vào đây</a> để xác nhận email của bạn.</div>`
   });
 };

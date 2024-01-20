@@ -45,7 +45,7 @@ export const NewVerificationForm = () => {
 
   return (
     <CardWrapper
-      headerLabel="Confirming your verification"
+      headerLabel="Đang xác nhận email của bạn"
       backButtonLabel="Quay lại trang đăng nhập"
       backButtonHref="/auth/login"
     >
