@@ -15,9 +15,9 @@ export const metadata: Metadata = {
   description: "congtcdev - Dạy lập trình",
   icons: "./icon.svg",
   openGraph: {
-    title: 'congtcdev',
-    description: 'Website dạy lập trình miễn phí.',
-    images: ['https://raw.githubusercontent.com/tranchiencongtd/hosting-file/main/images/logo.png'],
+    title: 'congtcdev - Học lập trình miễn phí',
+    description: 'Website dạy lập trình miễn phí. Học lập trình qua dự án thực tế cho các bạn học viên IT. Cung cấp các khoá học chất lượng giúp các bạn tăng kỹ năng và kiến thức trong nghề.',
+    images: ['https://raw.githubusercontent.com/tranchiencongtd/hosting-file/main/images/logo2.png'],
     type: "website"
   }
 };
