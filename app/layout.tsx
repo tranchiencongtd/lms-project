@@ -17,7 +17,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'congtcdev',
     description: 'Website dạy lập trình miễn phí.',
-    images: ['../public/8.svg']
+    images: ['https://raw.githubusercontent.com/tranchiencongtd/hosting-file/main/images/logo.svg'],
+    authors: ['congtcdev'],
   }
 };
 

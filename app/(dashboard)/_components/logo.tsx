@@ -6,7 +6,7 @@ export const Logo = () => {
     <a href="/" style={{
           transition: "all 0s ease",
         }}>
-      <Image height={200} width={350} alt="logo" src="/8.svg" />
+      <Image height={200} width={350} alt="logo" src="/logo.svg" />
     </a>
       {/* <a
         href="/"
