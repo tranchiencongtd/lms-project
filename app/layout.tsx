@@ -15,6 +15,8 @@ export const metadata: Metadata = {
   description: "congtcdev - Dạy lập trình",
   icons: "./icon.svg",
   openGraph: {
+    title: 'congtcdev',
+    description: 'Website dạy lập trình miễn phí.',
     images: ['../public/8.svg']
   }
 };
