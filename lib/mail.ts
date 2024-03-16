@@ -10,7 +10,7 @@ export const sendTwoFactorTokenEmail = async (
   token: string
 ) => {
   await resend.emails.send({
-    from: "CONGTCDEV <no-reply@tranchiencong.com>",
+    from: "congtcdev <no-reply@tranchiencong.com>",
     to: email,
     subject: "congtcdev | 2FA Code",
     html: `<p>Mã 2FA code của bạn: ${token}</p>`
@@ -24,7 +24,7 @@ export const sendPasswordResetEmail = async (
   const resetLink = `${domain}/auth/new-password?token=${token}`
 
   await resend.emails.send({
-    from: "CONGTCDEV <no-reply@tranchiencong.com>",
+    from: "congtcdev <no-reply@tranchiencong.com>",
     to: email,
     subject: "congtcdev | Thay đổi mật khẩu ",
     html: `<p>Click <a href="${resetLink}">vào đây</a> để đặt lại mật khẩu của bạn.</p>`
@@ -37,7 +37,7 @@ export const sendVerificationEmail = async (
 ) => {
   const confirmLink = `${domain}/auth/new-verification?token=${token}`;
   await resend.emails.send({
-    from: "CONGTCDEV <no-reply@tranchiencong.com>",
+    from: "congtcdev <no-reply@tranchiencong.com>",
     to: email,
     subject: "congtcdev | Xác nhận email",
     html: `<div>Click <a href="${confirmLink}">vào đây</a> để xác nhận email của bạn.</div>`
