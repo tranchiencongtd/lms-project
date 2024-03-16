@@ -3,8 +3,12 @@ import Image from "next/image";
 export const Logo = () => {
   return (
     <>
-      <Image height={130} width={130} alt="logo" src="/logo.svg" />
-      <a
+    <a href="/" style={{
+          transition: "all 0s ease",
+        }}>
+      <Image height={200} width={350} alt="logo" src="/8.svg" />
+    </a>
+      {/* <a
         href="/"
         style={{
           color: "#050505",
@@ -13,7 +17,7 @@ export const Logo = () => {
         }}
       >
         congtcdev
-      </a>
+      </a> */}
     </>
   );
 };
