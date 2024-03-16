@@ -13,6 +13,10 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "congtcdev",
   description: "congtcdev - Dạy lập trình",
+  icons: "./icon.svg",
+  openGraph: {
+    images: ['./icon.svg']
+  }
 };
 
 export default async function RootLayout({
