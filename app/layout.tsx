@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     title: 'congtcdev',
     description: 'Website dạy lập trình miễn phí.',
     images: ['https://raw.githubusercontent.com/tranchiencongtd/hosting-file/main/images/logo.png'],
+    type: "website"
   }
 };
 
